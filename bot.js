@@ -1,6 +1,4 @@
-
-
-
+//npm module to count number of hashtags
 var HashtagCount = require("hashtag-count")
 require('dotenv').config();
 
@@ -11,8 +9,11 @@ var hc = new HashtagCount({
   'access_token_secret': process.env.ACCESS_TOKEN_SECRET
 });
 
+//giving the hashtags for which we want to see the count
 var hashtags = ['worldwar3', 'trump', 'iran'];
+//time interval
 var interval = '10 seconds';
+//time limit for the program
 var limit = '30 seconds';
 var finishedCb = function (err, results) {
   if (err) {
@@ -21,6 +22,7 @@ var finishedCb = function (err, results) {
     console.log(results);
   }
 };
+//initializing.
 hc.start({
   hashtags: hashtags,       
   interval: interval,       
