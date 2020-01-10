@@ -1,23 +1,29 @@
-var twit = require('twit')
 
 
-var T = new twit({
-    consumer_key: 'tewwxY13Kkr1byDNx2PCQUYvG',  
-    consumer_secret: 'NVi0QuhDzoWsHBz1YoCuWyaJ9XM3xRHkrMmiDW3k7wrEjwQvzI',
-    access_token: '3251347058-qTT8Qv6ALKAY6h74Y5OQ2ZUY4e6b9o15WV3NUrK',  
-    access_token_secret: 'cS0bKv0iHEAZkbpL37g3fgfAzSU0Ud0cu37dQx0cXDBC4'
-})
 
-T.get('account/verify_credentials', {
-    include_entities: false,
-    skip_status: true,
-    include_email: false
-}, onAuthenticated)
+var HashtagCount = require("hashtag-count")
+require('dotenv').config();
 
-function onAuthenticated(err, res) {
-    if (err) {
-        throw err
-    }
+var hc = new HashtagCount({
+  'consumer_key': process.env.CONSUMER_KEY,
+  'consumer_secret': process.env.CONSUMER_SECRET,
+  'access_token': process.env.ACCESS_TOKEN,
+  'access_token_secret': process.env.ACCESS_TOKEN_SECRET
+});
 
-    console.log('Authentication successful. Running bot...\r\n')
-}
+var hashtags = ['worldwar3', 'trump', 'iran'];
+var interval = '10 seconds';
+var limit = '30 seconds';
+var finishedCb = function (err, results) {
+  if (err) {
+    console.error(err);
+  } else {
+    console.log(results);
+  }
+};
+hc.start({
+  hashtags: hashtags,       
+  interval: interval,       
+  limit: limit,             
+  finishedCb: finishedCb,   
+});
