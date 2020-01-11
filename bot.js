@@ -25,6 +25,7 @@ app.post('/submit-form' , (req,res) => {
   const name1 = req.body.name1
   const name2 = req.body.name2
   const name3 = req.body.name3
+  
   console.log(name1 , name2 , name3)
 
   count(name1,name2,name3)
@@ -34,11 +35,11 @@ app.post('/submit-form' , (req,res) => {
 
 var count = function(name1,name2,name3) {
 //giving the hashtags for which we want to see the count
- var hashtags = [name1, name2,name3];
+ var hashtags = [name1,name2,name3];
 // //time interval
- var interval = '15 seconds';
+ var interval = '15 seconds'
 //time limit for the program
-var limit = '15 seconds';
+var limit = '15 seconds'
 var finishedCb = function (err, results) {
   if (err) {
     console.error(err);
