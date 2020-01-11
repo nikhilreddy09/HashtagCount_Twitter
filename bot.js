@@ -9,17 +9,27 @@ var hc = new HashtagCount({
   'access_token_secret': process.env.ACCESS_TOKEN_SECRET
 });
 
-//giving the hashtags for which we want to see the count
-var hashtags = ['worldwar3', 'trump', 'iran'];
-//time interval
-var interval = '10 seconds';
+// //giving the hashtags for which we want to see the count
+ var hashtags = ['obama', 'trump', 'modi'];
+// //time interval
+ var interval = '15 seconds';
 //time limit for the program
-var limit = '30 seconds';
+var limit = '15 seconds';
 var finishedCb = function (err, results) {
   if (err) {
     console.error(err);
   } else {
-    console.log(results);
+      //give the result set to obj
+      console.log(results)
+      let obj = results
+      //get the values of the object into answer
+      let answer = Object.values(obj)
+      //get the object from the final array
+      let final = answer[0]
+      //get individual elements from the object
+      console.log(final.obama)
+      //get the total object values.
+      console.log(Object.values(obj));
   }
 };
 //initializing.
@@ -29,3 +39,5 @@ hc.start({
   limit: limit,             
   finishedCb: finishedCb,   
 });
+
+
